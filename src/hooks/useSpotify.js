@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import apiConfiguration from "../config";
 
 import SongsContext from "../contexts/songsContext";
@@ -18,27 +18,27 @@ function useSpotify() {
     api: { baseUrl },
   } = apiConfiguration;
 
-  const getNewReleases = async () => {
+  const getNewReleases = useCallback(async () => {
     const {
       albums: { items },
     } = await spotifyData(baseUrl, "/browse/new-releases");
 
     setNewReleases(items);
-  };
+  }, [baseUrl, setNewReleases]);
 
-  const getFeaturedPlaylist = async () => {
+  const getFeaturedPlaylist = useCallback(async () => {
     const {
       playlists: { items },
     } = await spotifyData(baseUrl, "/browse/featured-playlists");
     setFeaturedPlaylist(items);
-  };
+  }, [baseUrl, setFeaturedPlaylist]);
 
-  const getCategories = async () => {
+  const getCategories = useCallback(async () => {
     const {
       categories: { items },
     } = await spotifyData(baseUrl, "/browse/categories");
     setCategories(items);
-  };
+  }, [baseUrl, setCategories]);
 
   return {
     newReleases,

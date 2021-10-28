@@ -17,7 +17,7 @@ export default function Discover() {
     getNewReleases();
     getFeaturedPlaylist();
     getCategories();
-  }, []);
+  }, [getCategories, getFeaturedPlaylist, getNewReleases]);
   return (
     <div className="discover">
       <DiscoverBlock

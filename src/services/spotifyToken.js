@@ -3,8 +3,9 @@ import qs from "qs";
 import apiConfiguration from "../config";
 
 const spotifyToken = async () => {
-  const clientId = apiConfiguration.api.clientId;
-  const clientSecret = apiConfiguration.api.clientSecret;
+  const {
+    api: { clientId, clientSecret },
+  } = apiConfiguration;
 
   const headers = {
     headers: {
