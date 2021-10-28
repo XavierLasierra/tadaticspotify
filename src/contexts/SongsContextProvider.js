@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import SongsContext from "./songsContext";
 
 function SongsContextProvider({ children }) {
-  const [songs, setSongs] = useState(null);
+  const [newReleases, setNewReleases] = useState([]);
 
   return (
-    <SongsContext.Provider value={{ songs, setSongs }}>
+    <SongsContext.Provider value={{ newReleases, setNewReleases }}>
       {children}
     </SongsContext.Provider>
   );
