@@ -5,8 +5,14 @@ import SongsContext from "../contexts/songsContext";
 import spotifyData from "../services/spotifyData";
 
 function useSpotify() {
-  const { newReleases, setNewReleases, featuredPlaylist, setFeaturedPlaylist } =
-    useContext(SongsContext);
+  const {
+    newReleases,
+    setNewReleases,
+    featuredPlaylist,
+    setFeaturedPlaylist,
+    categories,
+    setCategories,
+  } = useContext(SongsContext);
 
   const {
     api: { baseUrl },
@@ -27,11 +33,20 @@ function useSpotify() {
     setFeaturedPlaylist(items);
   };
 
+  const getCategories = async () => {
+    const {
+      categories: { items },
+    } = await spotifyData(baseUrl, "/browse/categories");
+    setCategories(items);
+  };
+
   return {
     newReleases,
     featuredPlaylist,
+    categories,
     getNewReleases,
     getFeaturedPlaylist,
+    getCategories,
   };
 }
 

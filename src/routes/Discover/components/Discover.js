@@ -4,12 +4,19 @@ import "../styles/_discover.scss";
 import useSpotify from "../../../hooks/useSpotify";
 
 export default function Discover() {
-  const { newReleases, getNewReleases, featuredPlaylist, getFeaturedPlaylist } =
-    useSpotify();
+  const {
+    newReleases,
+    getNewReleases,
+    featuredPlaylist,
+    getFeaturedPlaylist,
+    categories,
+    getCategories,
+  } = useSpotify();
 
   useEffect(() => {
     getNewReleases();
     getFeaturedPlaylist();
+    getCategories();
   }, []);
   return (
     <div className="discover">
@@ -23,7 +30,12 @@ export default function Discover() {
         id="featured"
         data={featuredPlaylist}
       />
-      <DiscoverBlock text="BROWSE" id="browse" data={[]} imagesKey="icons" />
+      <DiscoverBlock
+        text="BROWSE"
+        id="browse"
+        data={categories}
+        imagesKey="icons"
+      />
     </div>
   );
 }
